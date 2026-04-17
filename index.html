@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nuvocargo — BOL Generator</title>
+<title>Algo PARA recordar — Cotizaciones</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -13,7 +13,7 @@
   --bg:#EEEEE9;--surface:#FFFFFF;--surface-2:#F5F5F0;--surface-3:#EEEEE9;
   --border:#E2E2DC;--border-2:#CECEC8;
   --text-1:#111827;--text-2:#374151;--text-3:#6B7280;--text-4:#9CA3AF;
-  --brand:#3C6B4E;--brand-dark:#2D5040;--brand-light:rgba(60,107,78,.07);
+  --brand:#C8282D;--brand-dark:#9E1F23;--brand-light:rgba(200,40,45,.07);
   --green:#16A34A;--green-bg:#F0FDF4;--green-border:#BBF7D0;
   --amber:#D97706;--amber-bg:#FFFBEB;--amber-border:#FDE68A;
   --red:#DC2626;--red-bg:#FEF2F2;--red-border:#FECACA;
@@ -86,9 +86,9 @@ header{background:var(--surface);border-bottom:1px solid var(--border);height:52
 .fg{display:flex;flex-direction:column;gap:3px;}
 label{font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;}
 input[type=text],input[type=date],textarea,select{height:34px;padding:0 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-1);background:var(--surface);outline:none;transition:border-color .14s,box-shadow .14s;width:100%;}
-input[type=text]:focus,input[type=date]:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(60,107,78,.08);}
+input[type=text]:focus,input[type=date]:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(200,40,45,.08);}
 textarea{height:auto;min-height:50px;padding:8px 10px;resize:vertical;}
-textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(60,107,78,.08);}
+textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(200,40,45,.08);}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%236B7280' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:26px;cursor:pointer;}
 .autofill{border-color:var(--green-border)!important;background:var(--green-bg)!important;}
 
@@ -116,7 +116,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 :root{
   --doc-bd:#DCDFE0;--doc-bg:#F7F8F8;--doc-bg2:#F2F4F2;
   --doc-tx1:#111827;--doc-tx2:#374151;--doc-tx3:#6B7280;
-  --doc-teal:#1C4A3E;--doc-lime:#C8E64C;
+  --doc-red:#C8282D;
 }
 .bol {
   background: white;
@@ -141,7 +141,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 /* Title */
 .bol-title-wrap {
   margin: 0 0 0 0;
-  background: var(--doc-teal);
+  background: var(--doc-red);
   text-align: center;
   padding: 9px 8px;
   border-radius: 0;
@@ -197,14 +197,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .ct-hdr {
   display: grid;
   grid-template-columns: 110px 50px 80px 1fr;
-  background: var(--doc-teal);
+  background: var(--doc-red);
   border-left: 1px solid var(--doc-bd);
   border-right: 1px solid var(--doc-bd);
   border-top: 1px solid var(--doc-bd);
   margin-top: 4px;
 }
 .ct-hdr.thu {
-  background: var(--doc-teal);
+  background: var(--doc-red);
 }
 .ct-hdr div {
   padding: 5px 7px;
@@ -243,7 +243,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 /* Carrier info */
 .ci-title {
   text-align: center;
-  background: var(--doc-teal);
+  background: var(--doc-red);
   padding: 4px;
   font-size: 7.5px;
   font-weight: 700;
@@ -351,6 +351,40 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   color: var(--doc-tx2);
 }
 
+/* ── Cotización document ────────────────────────────────────────────────── */
+.cot-header{display:flex;justify-content:flex-end;align-items:flex-start;padding:14px 16px 6px;}
+.cot-logo-block{text-align:right;}
+.cot-logo-box{background:var(--doc-red);color:white;padding:6px 10px;display:inline-block;vertical-align:top;}
+.cot-logo-title{font-size:8px;font-weight:700;line-height:1.3;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-logo-title .big{font-size:12px;font-weight:900;}
+.cot-badge{background:var(--doc-red);color:white;font-size:7px;font-weight:700;padding:4px 6px;display:inline-block;vertical-align:top;margin-left:3px;text-align:center;line-height:1.4;}
+.cot-website{font-size:7.5px;color:var(--doc-tx3);text-align:right;margin-top:3px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-country{font-size:7.5px;font-weight:700;color:var(--doc-red);text-align:right;letter-spacing:.06em;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-body{padding:4px 18px 18px;}
+.cot-date{text-align:right;font-size:9px;color:var(--doc-tx1);margin-bottom:12px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-customer{margin-bottom:10px;}
+.cot-customer-name{font-size:10px;font-weight:700;color:var(--doc-tx1);line-height:1.5;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-customer-company{font-size:10px;color:var(--doc-tx1);font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-greeting{font-size:10px;color:var(--doc-tx1);margin:10px 0 8px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-intro{font-size:9px;color:var(--doc-tx1);line-height:1.55;margin-bottom:12px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-tbl-hdr{display:grid;grid-template-columns:130px 1fr 110px 100px;background:var(--doc-red);border:1px solid var(--doc-bd);}
+.cot-tbl-hdr div{padding:6px 8px;font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:white;border-right:1px solid rgba(255,255,255,.2);font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-tbl-hdr div:last-child{border-right:none;}
+.cot-tbl-row{display:grid;grid-template-columns:130px 1fr 110px 100px;border-left:1px solid var(--doc-bd);border-right:1px solid var(--doc-bd);border-bottom:1px solid var(--doc-bd);font-size:9px;color:var(--doc-tx1);}
+.cot-tbl-row:nth-child(odd){background:white;}
+.cot-tbl-row:nth-child(even){background:var(--doc-bg);}
+.cot-tbl-row div{padding:6px 8px;border-right:1px solid var(--doc-bd);line-height:1.4;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-tbl-row div:last-child{border-right:none;}
+.cot-total-row{display:flex;justify-content:flex-end;border-left:1px solid var(--doc-bd);border-right:1px solid var(--doc-bd);border-bottom:1px solid var(--doc-bd);font-size:9px;color:var(--doc-tx1);}
+.cot-total-row .lbl{padding:4px 12px;min-width:110px;text-align:right;border-right:1px solid var(--doc-bd);font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-total-row .amt{padding:4px 8px;min-width:100px;text-align:right;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-total-row.grand{background:var(--doc-bg2);font-weight:700;font-size:11px;border-top:1.5px solid var(--doc-tx1);}
+.cot-total-row.iva-row{background:var(--doc-bg);}
+.cot-terms{font-size:7.5px;color:var(--doc-tx2);line-height:1.6;margin-top:14px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-terms b{color:var(--doc-tx1);}
+.cot-regards{font-size:10px;color:var(--doc-tx1);margin-top:22px;letter-spacing:3px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+.cot-seller{font-size:10px;font-weight:700;color:var(--doc-tx1);margin-top:28px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;}
+
 @media(max-width:900px){.app{grid-template-columns:1fr;height:auto}.pp{display:none}}
 
 /* ── Dark mode ── */
@@ -358,7 +392,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   --bg:#15191F;--surface:#1E2330;--surface-2:#242938;--surface-3:#15191F;
   --border:#2A3044;--border-2:#354060;
   --text-1:#F0F4FC;--text-2:#C4CEDD;--text-3:#8899B4;--text-4:#5A6880;
-  --brand:#4D8B67;--brand-dark:#3C6B4E;--brand-light:rgba(77,139,103,.12);
+  --brand:#D94045;--brand-dark:#C8282D;--brand-light:rgba(200,40,45,.12);
   --green:#22C55E;--green-bg:rgba(34,197,94,.1);--green-border:rgba(34,197,94,.2);
   --amber:#F59E0B;--amber-bg:rgba(245,158,11,.1);--amber-border:rgba(245,158,11,.2);
   --red:#F87171;--red-bg:rgba(248,113,113,.1);--red-border:rgba(248,113,113,.2);
@@ -375,21 +409,20 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 <header>
   <div class="h-brand">
-    <span class="h-logo-text">nuvo</span>
-    <div class="h-os-badge">OS</div>
+    <span class="h-logo-text" style="font-size:18px;font-weight:700;letter-spacing:-.3px">APR</span>
+    <div class="h-os-badge">MX</div>
   </div>
   <div class="h-divider"></div>
-  <span class="h-app-title">BOL Generator</span>
+  <span class="h-app-title">Generador de Cotizaciones</span>
   <div class="h-right">
-    <button class="btn-ctrl" id="themeToggle" onclick="toggleTheme()" title="Toggle dark/light mode" aria-label="Toggle theme">
+    <button class="btn-ctrl" id="themeToggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Toggle theme">
       <svg class="dm-moon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 8.5a6 6 0 0 1-7-7 5.5 5.5 0 1 0 7 7z"/></svg>
       <svg class="dm-sun" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="2.5"/><path d="M7 1v1M7 12v1M1 7h1M12 7h1M2.9 2.9l.7.7M10.4 10.4l.7.7M10.4 3.6l-.7.7M3.6 10.4l-.7.7"/></svg>
     </button>
-    <button class="btn-ctrl" id="langToggle" onclick="toggleLang()" title="Switch language / Cambiar idioma">EN</button>
-    <button class="btn-sec" onclick="clearForm()" data-i18n="btn.clearForm">Clear form</button>
+    <button class="btn-sec" onclick="clearForm()">Limpiar</button>
     <button class="btn-gen" onclick="generatePDF()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span data-i18n="btn.downloadPDF">Download PDF</span>
+      <span>Descargar PDF</span>
     </button>
   </div>
 </header>
@@ -399,15 +432,15 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
   <!-- UPLOAD -->
   <div class="upsec">
-    <div class="upsec-hdr"><h3 data-i18n="bol.import">Import packing list</h3></div>
+    <div class="upsec-hdr"><h3>Importar documento</h3></div>
     <div class="upsec-body">
       <div class="upzone" id="upzone">
         <input type="file" id="docfile" accept=".pdf,.xlsx,.xls,.csv" multiple onchange="handleUpload(event)">
         <div class="upicon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
-        <p><strong>Click to upload</strong> or drag and drop</p>
-        <p style="font-size:11px;color:var(--text-4);margin-top:2px">PDF · Excel (.xlsx / .xls) · CSV — multiple files supported</p>
+        <p><strong>Clic para subir</strong> o arrastrar archivo</p>
+        <p style="font-size:11px;color:var(--text-4);margin-top:2px">PDF · Excel (.xlsx / .xls) · CSV</p>
       </div>
       <div id="fileList" style="margin-top:8px;display:none;font-size:11px;color:var(--text-3);line-height:1.8"></div>
       <div class="upstatus" id="upstatus"></div>
@@ -415,159 +448,77 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
   </div>
 
-  <!-- SHIPMENT INFO -->
+  <!-- QUOTE INFO -->
   <div class="fsec">
-    <div class="fsec-hdr"><h4 data-i18n="bol.shipmentInfo">Shipment Info</h4></div>
+    <div class="fsec-hdr"><h4>Información de cotización</h4></div>
     <div class="fsec-body">
-    <div class="fr c2">
-      <div class="fg"><label>Shipment ID</label><input type="text" id="shipmentId" placeholder="SH-00000" oninput="onShipmentIdInput(this.value)"></div>
-      <div class="fg"><label>Date</label><input type="date" id="shipDate"></div>
-    </div>
-    <div id="sheetStatus" class="sheet-status"></div>
-    <div class="fr c3">
-      <div class="fg"><label>Carrier</label>
-        <input type="text" id="carrierName" placeholder="Select or type carrier name..." list="carrierList" autocomplete="off">
-        <datalist id="carrierList">
-            <option value="3T CARRIER LLC">3T CARRIER LLC</option>
-            <option value="4MDT TRANSPORTATION INC">4MDT TRANSPORTATION INC</option>
-            <option value="5INCO TRADING LLC">5INCO TRADING LLC</option>
-            <option value="Aralog Logistics">Aralog Logistics</option>
-            <option value="AVERITT EXPRESS INC dba AVERITT">AVERITT EXPRESS INC dba AVERITT</option>
-            <option value="BEST BAY TRUCKING CORPORATION">BEST BAY TRUCKING CORPORATION</option>
-            <option value="Best Rush Service LLC">Best Rush Service LLC</option>
-            <option value="BLACK EAGLE TRUCKING INC">BLACK EAGLE TRUCKING INC</option>
-            <option value="BOLT TRANSPORT SOLUTIONS LLC">BOLT TRANSPORT SOLUTIONS LLC</option>
-            <option value="COSIO BROS TRANSPORTATION CORP">COSIO BROS TRANSPORTATION CORP</option>
-            <option value="Daniel Cárdenas Martínez">Daniel Cárdenas Martínez</option>
-            <option value="DAVID GONZALEZ dba HEGO LOGISTICS">DAVID GONZALEZ dba HEGO LOGISTICS</option>
-            <option value="EDER I NAVARRO MARTINEZ & JUAN M BELTRAN RAMIREZ dba NB TRUCKING">EDER I NAVARRO MARTINEZ & JUAN M BELTRAN RAMIREZ dba NB TRUCKING</option>
-            <option value="FJ CARRIER LOGISTICS LLC">FJ CARRIER LOGISTICS LLC</option>
-            <option value="INDIANA TRANSPORT LLC">INDIANA TRANSPORT LLC</option>
-            <option value="INTERFLETES-ESCOBEDO TRUCKING LLC">INTERFLETES-ESCOBEDO TRUCKING LLC</option>
-            <option value="LOGISTICAL EXCELLENCE LLC dba LOGISTICAL EXCELLENCE">LOGISTICAL EXCELLENCE LLC dba LOGISTICAL EXCELLENCE</option>
-            <option value="MARROQUIN TRANSPORT LLC">MARROQUIN TRANSPORT LLC</option>
-            <option value="MC1 EXPRESS LLC">MC1 EXPRESS LLC</option>
-            <option value="MOTHERSHIP TECHNOLOGIES INC">MOTHERSHIP TECHNOLOGIES INC</option>
-            <option value="OAK TRUCK LINES LLC">OAK TRUCK LINES LLC</option>
-            <option value="OMEGA EXIM INC dba MOVE">OMEGA EXIM INC dba MOVE</option>
-            <option value="RIOREV LOGISTICS, LLC.">RIOREV LOGISTICS, LLC.</option>
-            <option value="SAFEWAY MOVING SYSTEM INC dba SAFEWAY LOGISTICS">SAFEWAY MOVING SYSTEM INC dba SAFEWAY LOGISTICS</option>
-            <option value="SMART ROAD TRANSPORT INC">SMART ROAD TRANSPORT INC</option>
-            <option value="SPOT FREIGHT INC">SPOT FREIGHT INC</option>
-            <option value="Sun 3PL, INC.">Sun 3PL, INC.</option>
-            <option value="TERRIER TRANSPORTATION INC">TERRIER TRANSPORTATION INC</option>
-            <option value="TEXAS INTERNATIONAL ENTERPRISES INC">TEXAS INTERNATIONAL ENTERPRISES INC</option>
-            <option value="TEXPORT TRUCKING LLC">TEXPORT TRUCKING LLC</option>
-            <option value="THR LLC">THR LLC</option>
-            <option value="TM TRANSPORTATION SERVICES LLC">TM TRANSPORTATION SERVICES LLC</option>
-            <option value="TRADEX LOGISTICS INC">TRADEX LOGISTICS INC</option>
-            <option value="TRANSMAQUILA INC">TRANSMAQUILA INC</option>
-            <option value="VALUE TRUCK OF AZ LLC">VALUE TRUCK OF AZ LLC</option>
-            <option value="VM GLOBAL TRANSPORT LLC dba MUVA INTERNACIONAL SA DE CV">VM GLOBAL TRANSPORT LLC dba MUVA INTERNACIONAL SA DE CV</option>
-            <option value="XO M LOGISTIC LLC">XO M LOGISTIC LLC</option>
-            <option value="Zaro Transportation, LLC.">Zaro Transportation, LLC.</option>
-        </datalist>
+      <div class="fr c3">
+        <div class="fg"><label>No. cotización</label><input type="text" id="quoteNum" placeholder="COT-001" oninput="render()"></div>
+        <div class="fg"><label>Fecha</label><input type="date" id="quoteDate" oninput="render()"></div>
+        <div class="fg"><label>Ciudad</label><input type="text" id="quoteCity" placeholder="Ciudad de México" oninput="render()"></div>
       </div>
-      <div class="fg"><label>Trailer No.</label><input type="text" id="trailerNo" placeholder="e.g. AL15179"></div>
-      <div class="fg"><label>Seal No.</label><input type="text" id="sealNo"></div>
     </div>
-    <div class="fr c2">
-      <div class="fg"><label>Delivery Date</label><input type="date" id="deliveryDate"></div>
-      <div class="fg"><label>Delivery Time</label><input type="text" id="deliveryTime" placeholder="e.g. 15:00 hrs"></div>
-    </div>
-    </div><!-- /fsec-body -->
   </div>
 
-  <!-- SHIPPER -->
+  <!-- CUSTOMER -->
   <div class="fsec">
-    <div class="fsec-hdr"><h4 data-i18n="bol.shipFrom">Ship From (Shipper)</h4></div>
+    <div class="fsec-hdr"><h4>Cliente</h4></div>
     <div class="fsec-body">
-    <div class="fr"><div class="fg"><label>Company Name</label><input type="text" id="shipperName" placeholder="Shipper company name"></div></div>
-    <div class="fr"><div class="fg"><label>Address</label><textarea id="shipperAddr" rows="2" placeholder="Street, City, State, Zip"></textarea></div></div>
+      <div class="fr c2">
+        <div class="fg"><label>Nombre(s)</label><input type="text" id="custName" placeholder="Susana" oninput="render()"></div>
+        <div class="fg"><label>Apellido(s)</label><input type="text" id="custLastName" placeholder="Torres" oninput="render()"></div>
+      </div>
+      <div class="fr c2">
+        <div class="fg"><label>Empresa</label><input type="text" id="custCompany" placeholder="MetLife" oninput="render()"></div>
+        <div class="fg"><label>Tratamiento</label>
+          <select id="custTitle" oninput="render()">
+            <option value="señorita">señorita</option>
+            <option value="señor">señor</option>
+            <option value="señora">señora</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- CONSIGNEE -->
+  <!-- ITEMS -->
   <div class="fsec">
-    <div class="fsec-hdr"><h4 data-i18n="bol.shipTo">Ship To (Consignee)</h4></div>
+    <div class="fsec-hdr"><h4>Artículos</h4></div>
     <div class="fsec-body">
-    <div class="fr"><div class="fg"><label>Company Name</label><input type="text" id="consigneeName" placeholder="Consignee company name"></div></div>
-    <div class="fr"><div class="fg"><label>Address</label><textarea id="consigneeAddr" rows="2" placeholder="Street, City, State, Zip"></textarea></div></div>
+      <div style="overflow-x:auto">
+        <table class="ctbl">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+              <th>Descripción</th>
+              <th>Precio Unit.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="itemBody"></tbody>
+        </table>
+      </div>
+      <button class="btnadd" onclick="addRow()">+ Agregar artículo</button>
     </div>
   </div>
 
-  <!-- THIRD PARTY -->
+  <!-- SETTINGS -->
   <div class="fsec">
-    <div class="fsec-hdr"><h4 data-i18n="bol.thirdParty">Third Party Freight Bill To</h4></div>
+    <div class="fsec-hdr"><h4>Configuración</h4></div>
     <div class="fsec-body">
-    <div class="fr"><div class="fg"><label>Name</label><input type="text" id="tpName" placeholder="Company / Person"></div></div>
-    <div class="fr c2">
-      <div class="fg"><label>Address</label><input type="text" id="tpAddr" placeholder="Street address"></div>
-      <div class="fg"><label>City</label><input type="text" id="tpCity" placeholder="City"></div>
-    </div>
+      <div class="fr c2">
+        <div class="fg"><label>IVA %</label><input type="text" id="ivaRate" value="16" placeholder="16" oninput="render()"></div>
+        <div class="fg"><label>Vendedor</label><input type="text" id="sellerName" placeholder="Alejandro Mondragón C." oninput="render()"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Texto introductorio</label><textarea id="introText" rows="3" placeholder="Me permito poner a su consideración el presupuesto que nos hizo favor de solicitar..." oninput="render()"></textarea></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Términos y condiciones</label><textarea id="termsText" rows="3" placeholder="Estos precios son unitarios y no incluyen el IVA. El tiempo de entrega será de 2 semanas..." oninput="render()"></textarea></div>
+      </div>
     </div>
   </div>
 
-  <!-- CARGO -->
-  <div class="fsec">
-    <div class="fsec-hdr"><h4 data-i18n="bol.cargo">Cargo Lines</h4></div>
-    <div class="fsec-body">
-    <div style="overflow-x:auto">
-      <table class="ctbl">
-        <thead id="cargoHead">
-          <tr>
-            <th>Order / PO No.</th>
-            <th id="hConsignee" style="display:none">Consignee</th>
-            <th id="hUnits" style="display:none">Units</th>
-            <th>Boxes</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Weight</th>
-            <th>Unit</th>
-            <th>Class</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="cargoBody"></tbody>
-      </table>
-    </div>
-    <button class="btnadd" onclick="addRow()">+ Add line</button>
-
-    <div class="mode-row" style="margin-top:12px">
-      <span>BOL type</span>
-      <label><input type="radio" name="bolMode" value="thursday" onchange="setBolMode('thursday')" checked style="width:auto;border:none;padding:0;background:none"> Thursday Boot Co.</label>
-      <label><input type="radio" name="bolMode" value="tresmontes" onchange="setBolMode('tresmontes')" style="width:auto;border:none;padding:0;background:none"> Standard</label>
-    </div>
-
-    <div class="fr c2" style="margin-top:8px">
-      <div class="fg" id="commodityWrap"><label>Commodity</label><input type="text" id="commodity" placeholder="e.g. Saborizante en Polvo" oninput="render()"></div>
-      <div class="fg" id="freightClassWrap"><label>Freight class</label><input type="text" id="freightClass" value="60" placeholder="60" oninput="render()"></div>
-      <div class="fg" id="palletsWrap"><label>Total pallets</label><input type="text" id="totalPallets" placeholder="e.g. 24" oninput="render()"></div>
-    </div>
-    </div><!-- /fsec-body -->
-  </div>
-
-  <!-- INSTRUCTIONS -->
-  <div class="fsec">
-    <div class="fsec-hdr"><h4>Special Instructions</h4></div>
-    <div class="fsec-body">
-    <div class="fr c2" style="margin-bottom:8px">
-      <div class="fg"><label>Confirmation number</label><input type="text" id="confirmNum" placeholder="e.g. ZLORWO" oninput="render()"></div>
-      <div class="fg"><label>SCAC code</label><input type="text" id="scacCode" placeholder="e.g. ARALOG" oninput="render()"></div>
-    </div>
-    <div class="fg"><textarea id="specInstr" rows="2" placeholder="Additional instructions..."></textarea></div>
-    </div>
-  </div>
-
-  <!-- DECLARED VALUE -->
-  <div class="fsec">
-    <div class="fsec-hdr"><h4>Declared Value</h4></div>
-    <div class="fsec-body">
-    <div class="fr c2">
-      <div class="fg"><label>Amount ($)</label><input type="text" id="declValue" placeholder="0.00"></div>
-    </div>
-    </div>
-  </div>
 </div>
 
 <!-- PREVIEW -->
@@ -603,12 +554,8 @@ function fmtDs(s){if(!s)return"";const[y,m,d]=s.split("-");return m+"/"+d+"/"+y;
 
 document.addEventListener("DOMContentLoaded",()=>{
   const t=new Date();
-  document.getElementById("shipDate").value=t.toISOString().split("T")[0];
-  document.getElementById("shipmentId").value="SH-"+(Math.floor(Math.random()*90000)+10000);
-  // Default to Thursday mode
-  const thuRadio = document.querySelector('input[name="bolMode"][value="thursday"]');
-  if(thuRadio){ thuRadio.checked = true; }
-  setBolMode("thursday");
+  document.getElementById("quoteDate").value=t.toISOString().split("T")[0];
+  document.getElementById("quoteNum").value="COT-"+(Math.floor(Math.random()*9000)+1000);
   addRow();addRow();
   document.querySelectorAll("input,textarea,select").forEach(e=>e.addEventListener("input",render));
   render();
@@ -616,234 +563,120 @@ document.addEventListener("DOMContentLoaded",()=>{
   z.addEventListener("dragover",e=>{e.preventDefault();z.classList.add("dragover");});
   z.addEventListener("dragleave",()=>z.classList.remove("dragover"));
   z.addEventListener("drop",e=>{e.preventDefault();z.classList.remove("dragover");doUploadMulti(e.dataTransfer.files);});
-  // Snowflake lookups happen on-demand (no preload needed)
 });
-
-let bolMode = "thursday"; // "thursday" or "tresmontes"
-
-function setBolMode(mode){
-  bolMode = mode;
-  const isThu = mode === "thursday";
-  document.getElementById("hConsignee").style.display = isThu ? "" : "none";
-  document.getElementById("hUnits").style.display     = isThu ? "" : "none";
-  document.getElementById("commodityWrap").style.display   = isThu ? "none" : "";
-  document.getElementById("freightClassWrap").style.display = isThu ? "none" : "";
-  document.getElementById("palletsWrap").style.display      = isThu ? "" : "none";
-  // update all existing rows visibility
-  document.querySelectorAll("#cargoBody tr").forEach(tr=>{
-    const cells = tr.querySelectorAll("td");
-    if(cells.length >= 4){
-      cells[1].style.display = isThu ? "" : "none"; // consignee
-      cells[2].style.display = isThu ? "" : "none"; // units
-    }
-  });
-  render();
-}
 
 function addRow(d={}){
   rc++;
   const id="r"+rc;
-  const isThu = bolMode === "thursday";
   const tr=document.createElement("tr");
   tr.id=id;
   tr.innerHTML=
-    `<td><input type="text" value="${(d.order||'').replace(/"/g,"&quot;")}" oninput="render()" placeholder="Order #" style="min-width:110px"></td>`+
-    `<td style="display:${isThu?'':'none'}"><input type="text" value="${(d.consignee||'').replace(/"/g,"&quot;")}" oninput="render()" placeholder="Factory/Brand" style="min-width:90px"></td>`+
-    `<td style="display:${isThu?'':'none'}"><input type="text" value="${(d.units||d.pkgs||'').replace(/"/g,"&quot;")}" style="width:60px" oninput="render()" placeholder="Units"></td>`+
-    `<td><input type="text" value="${(d.boxes||d.pkgs||'').replace(/"/g,"&quot;")}" style="width:50px" oninput="render()" placeholder="Boxes"></td>`+
-    `<td><input type="text" value="${(d.type||'CJ').replace(/"/g,"&quot;")}" style="width:42px" oninput="render()"></td>`+
-    `<td><input type="text" value="${(d.desc||'').replace(/"/g,"&quot;")}" oninput="render()" placeholder="Description" style="min-width:80px"></td>`+
-    `<td><input type="text" value="${(d.weight||'').replace(/"/g,"&quot;")}" style="width:60px" oninput="render()" placeholder="0"></td>`+
-    `<td><select oninput="render()" style="width:55px"><option value="KG"${(d.unit||'KG')==='KG'?' selected':''}>KG</option><option value="LBS"${d.unit==='LBS'?' selected':''}>LBS</option></select></td>`+
-    `<td><input type="text" value="${(d.cls||'60').replace(/"/g,"&quot;")}" style="width:38px" oninput="render()"></td>`+
+    `<td><input type="text" value="${(d.qty||d.boxes||d.pkgs||'').replace(/"/g,'&quot;')}" oninput="render()" placeholder="1" style="width:65px"></td>`+
+    `<td><input type="text" value="${(d.desc||'').replace(/"/g,'&quot;')}" oninput="render()" placeholder="Descripción del artículo" style="min-width:200px"></td>`+
+    `<td><input type="text" value="${(d.price||'').replace(/"/g,'&quot;')}" oninput="render()" placeholder="0.00" style="width:90px"></td>`+
     `<td><button class="del-r" onclick="document.getElementById('${id}').remove();render()">&#215;</button></td>`;
-  document.getElementById("cargoBody").appendChild(tr);
+  document.getElementById("itemBody").appendChild(tr);
   render();
 }
 
 function getRows(){
-  return [...document.querySelectorAll("#cargoBody tr")].map(tr=>{
-    const inp=tr.querySelectorAll("input,select");
-    // inp[0]=order, [1]=consignee, [2]=units, [3]=boxes, [4]=type, [5]=desc, [6]=weight, [7]=unit, [8]=cls
+  return [...document.querySelectorAll("#itemBody tr")].map(tr=>{
+    const inp=tr.querySelectorAll("input");
     return{
-      order:   inp[0]?.value||"",
-      consignee: inp[1]?.value||"",
-      units:   inp[2]?.value||"",
-      boxes:   inp[3]?.value||"",
-      pkgs:    inp[3]?.value||inp[2]?.value||"",  // backward compat
-      type:    inp[4]?.value||"CJ",
-      desc:    inp[5]?.value||"",
-      weight:  inp[6]?.value||"",
-      unit:    inp[7]?.value||"KG",
-      cls:     inp[8]?.value||"60"
+      qty:   inp[0]?.value||"",
+      desc:  inp[1]?.value||"",
+      price: inp[2]?.value||""
     };
   });
 }
 
 function render(){
-  document.getElementById("bolPreview").innerHTML=buildBOL();
+  document.getElementById("bolPreview").innerHTML=buildCotizacion();
 }
 
-function buildBOL(){
+function buildCotizacion(){
   const rows=getRows();
-  const isThu = bolMode === "thursday";
-  let tPkgs=0, tUnits=0, tKg=0;
-  rows.forEach(r=>{
-    tPkgs  += parseInt(r.boxes||r.pkgs)||0;
-    tUnits += parseInt(r.units||r.pkgs)||0;
-    tKg    += toKg(r.weight,r.unit);
-  });
+  const ivaRate=parseFloat(v("ivaRate"))||16;
+  let subTotal=0;
+  rows.forEach(r=>{subTotal+=(parseFloat(r.qty)||0)*(parseFloat(r.price)||0);});
+  const iva=subTotal*ivaRate/100;
+  const total=subTotal+iva;
 
-  // ── Cargo table rows ──────────────────────────────────────────────────────
-  // Thursday: Pallets column = "units DESC" (e.g. "1230 Boots", "180 JACKETS")
-  function thuPalletsLabel(r){
-    const u = r.units||r.pkgs||"";
-    const d = (r.desc||"").toUpperCase();
-    if(!u) return "";
-    // Only append desc if it's not Boots (boots just show the number)
-    if(d==="BOOTS"||d==="BOOT"||d==="FOOTWEAR") return u;
-    return u + (d ? " "+d : "");
-  }
-  let rowsHTML = "";
-  if(isThu){
-    rowsHTML = rows.map(r=>`
-    <div class="ct-row" style="grid-template-columns:1.8fr 1.3fr 0.8fr 0.8fr 1.5fr">
-      <div>${r.order}</div>
-      <div>${r.consignee}</div>
-      <div style="text-align:center">${thuPalletsLabel(r)}</div>
-      <div style="text-align:center">${r.boxes||r.pkgs}</div>
+  const dateVal=v("quoteDate");
+  const city=v("quoteCity")||"Ciudad de México";
+  const dateStr=dateVal?fmtDateEs(dateVal):"";
+  const dateLine=dateStr?city+" a "+dateStr:city;
+
+  const custName=v("custName");
+  const custLastName=v("custLastName");
+  const custCompany=v("custCompany");
+  const title=v("custTitle")||"señorita";
+  const greetPrefix=(title==="señor")?"Estimado":"Estimada";
+
+  const rowsHTML=rows.map((r,ri)=>{
+    const lineTotal=(parseFloat(r.qty)||0)*(parseFloat(r.price)||0);
+    return `
+    <div class="cot-tbl-row">
+      <div style="text-align:center">${r.qty}</div>
       <div>${r.desc}</div>
-    </div>`).join("");
-  } else {
-    rowsHTML = rows.map(r=>`
-    <div class="ct-row">
-      <div>${r.order}</div>
-      <div style="text-align:center">${r.boxes||r.pkgs}</div>
-      <div style="text-align:right">${fmt(toKg(r.weight,r.unit))}</div>
-      <div>${r.desc}</div>
-    </div>`).join("");
-  }
-
-  // ── Carrier section (Tresmontes only) ─────────────────────────────────────
-  const commodity=v("commodity")||"Boxes";
-  const freightCls=v("freightClass")||"60";
-  const ciRows=rows.map(r=>`
-    <div class="ci-row">
-      <div>${r.boxes||r.pkgs}</div><div>${r.type}</div>
-      <div>${fmt(toKg(r.weight,r.unit))}</div>
-      <div></div><div style="text-align:left;padding-left:6px">${commodity}</div>
-      <div>${freightCls}</div>
-    </div>`).join("");
-
-  const carrierSection = isThu ? "" : `
-    <div class="ci-title">Carrier Information</div>
-    <div class="ci-hdr">
-      <div>QTY</div><div>TYPE</div><div>Weight KG</div><div>H.M</div><div>Commodity</div><div>Class</div>
-    </div>
-    ${ciRows}
-    <div class="ci-total">
-      <div>${fmt(tPkgs,0)}</div><div></div><div>${fmt(tKg)}</div><div></div><div></div><div></div>
+      <div style="text-align:right">$ ${fmt(r.price)}</div>
+      <div style="text-align:right">$${fmt(lineTotal)}</div>
     </div>`;
+  }).join("");
 
-  // ── Third Party section ───────────────────────────────────────────────────
-  const tp=(v("tpName")||v("tpAddr"))?`
-    <div class="bol-3p">
-      <div class="clabel" style="margin-bottom:3px">Third Party Freight Charges Bill To</div>
-      <div><b>Name:</b> ${v("tpName")}</div>
-      <div><b>Address:</b> ${v("tpAddr")}</div>
-      <div><b>City:</b> ${v("tpCity")}</div>
-    </div>`:"";
-
-  // ── Table header & totals ─────────────────────────────────────────────────
-  const thuTableHdr = `
-    <div class="ct-hdr" style="grid-template-columns:1.8fr 1.3fr 0.8fr 0.8fr 1.5fr;margin-top:5px">
-      <div>Customer Order No.</div><div>Consignee</div><div>Pallets</div><div>Boxes</div><div>Description</div>
-    </div>`;
-  const stdTableHdr = `
-    <div class="ct-hdr" style="margin-top:5px">
-      <div>Customer Order No.</div><div>Pkgs</div><div>Weight KG</div><div>Description</div>
-    </div>`;
-
-  const thuTotalRow = `
-    <div class="ct-row" style="background:#f5f5f5;font-weight:700;border-bottom:1.5px solid #111;grid-template-columns:1.8fr 1.3fr 0.8fr 0.8fr 1.5fr">
-      <div></div><div>Total:</div><div style="text-align:center">${fmt(tUnits,0)}</div><div style="text-align:center">${fmt(tPkgs,0)}</div><div></div>
-    </div>
-    <div class="ct-row" style="background:#f5f5f5;font-weight:700;border-bottom:1.5px solid #111;grid-template-columns:1.8fr 1.3fr 0.8fr 0.8fr 1.5fr">
-      <div></div><div>Pallets:</div><div></div><div style="text-align:center;font-weight:900">${v("totalPallets")||""}</div><div></div>
-    </div>`;
-  const stdTotalRow = `
-    <div class="ct-row" style="background:#f5f5f5;font-weight:700;border-bottom:1.5px solid #111">
-      <div></div><div style="text-align:center">${fmt(tPkgs,0)}</div><div style="text-align:right">${fmt(tKg)}</div><div></div>
-    </div>`;
-
-  // ── Special instructions (includes confirmation number for Thursday) ───────
-  const specInstrText = v("specInstr");
-  const confNum = v("confirmNum");
-  const specBlock = (confNum||specInstrText) ? `
-    <div class="bol-instr">
-      ${confNum?`<div style="text-align:center;font-size:11px;font-weight:700;padding:6px 0">Confirmation number: ${confNum}</div>`:""}
-      <div class="clabel" style="margin-bottom:3px">Shipper Special Instructions:</div>
-      <div style="min-height:36px;font-size:9px">${specInstrText}</div>
-    </div>` : `<div class="bol-instr">
-      <div class="clabel" style="margin-bottom:3px">Consignee Special Instructions:</div>
-      <div style="min-height:36px;font-size:9px"></div>
-    </div>`;
+  const introText=v("introText")||"Me permito poner a su consideración el presupuesto que nos hizo favor de solicitar.";
+  const termsText=v("termsText");
+  const sellerName=v("sellerName");
 
   return `
-  <div class="bol-hdr"><img src="${LOGO}" class="bol-logo" alt="nuvocargo"></div>
-  <div class="bol-body">
-    <div class="bol-title-wrap"><div class="bol-title">STRAIGHT BILL OF LADING</div></div>
-
-    <div class="bg">
-      <div class="bc" style="grid-row:span 3">
-        <div class="clabel">Ship From:</div>
-        <div class="cval b" style="margin-top:3px">${v("shipperName")}</div>
-        <div class="cval" style="margin-top:5px;font-size:9px;color:#444;line-height:1.4">${v("shipperAddr").replace(/\n/g,"<br>")}</div>
-      </div>
-      <div class="bc r"><span class="clabel">Date:</span> <span class="cval" style="display:inline;margin-left:6px">${fmtDate(v("shipDate"))}</span></div>
-      <div class="bc r"><span class="clabel">Shipment Identification No:</span> <span class="cval lg" style="float:right">${v("shipmentId")}</span></div>
-      <div class="bc r"><span class="clabel">Carrier Name:</span> <span class="cval" style="display:inline;margin-left:6px">${v("carrierName")}</span></div>
-      <div class="bc r"><span class="clabel">Trailer No:</span> <span class="cval" style="display:inline;margin-left:6px">${v("trailerNo")}</span></div>
-      <div class="bc r nb"><span class="clabel">Seal Number:</span> <span class="cval" style="display:inline;margin-left:6px">${v("sealNo")}</span></div>
-    </div>
-
-    <div class="bg">
-      <div class="bc" style="grid-row:span 2">
-        <div class="clabel">Ship To:</div>
-        <div class="cval b" style="margin-top:3px">${v("consigneeName")}</div>
-        <div class="cval" style="margin-top:5px;font-size:9px;color:#444;line-height:1.4">${v("consigneeAddr").replace(/\n/g,"<br>")}</div>
-      </div>
-      <div class="bc r"><span class="clabel" style="font-weight:800">Delivery Date:</span> <span class="cval" style="display:inline;margin-left:6px">${fmtDs(v("deliveryDate"))}</span></div>
-      <div class="bc r nb"><span class="clabel" style="font-weight:800">Delivery Time:</span> <span class="cval" style="display:inline;margin-left:6px">${v("deliveryTime")}</span></div>
-    </div>
-
-    ${tp}
-
-    ${isThu ? thuTableHdr : stdTableHdr}
-    ${rowsHTML}
-    ${isThu ? thuTotalRow : stdTotalRow}
-
-    ${carrierSection}
-
-    ${specBlock}
-
-    <div class="bol-sig">
-      <div class="bol-sigcell">
-        <div style="font-size:7.5px;color:#555;line-height:1.5">NOTE &ndash; Where the rate is dependant on value, shippers are required to state specifically in writing the agreed or declared value of the property.<br><br>The agreed or declared value of the property is hereby specifically stated by the shipper to be not exceeding<br>$ ${v("declValue")||""}</div>
-        <div style="margin-top:10px">
-          <div class="clabel" style="font-size:9px;font-weight:800">CARRIER SIGNATURE / PICKUP DATE</div>
-          <div class="sigline">Date:</div>
+  <div class="cot-header">
+    <div class="cot-logo-block">
+      <div style="display:inline-flex;align-items:stretch;margin-bottom:3px">
+        <div class="cot-logo-box">
+          <div class="cot-logo-title">Algo<br><span class="big">PARA</span><br>recordar</div>
         </div>
+        <div class="cot-badge">25<br>años</div>
       </div>
-      <div class="bol-sigcell">
-        <div class="clabel" style="font-size:9px;font-weight:800">CONSIGNEE SIGNATURE</div>
-        <div style="font-size:7.5px;color:#555;margin-top:2px;font-style:italic">Property described above is received in good order, except noted.</div>
-        <div class="sigline">Date:</div>
-      </div>
+      <div class="cot-website">www.algopararecordar.com</div>
+      <div class="cot-country">MÉXICO</div>
+    </div>
+  </div>
+  <div class="cot-body">
+    <div class="cot-date">${dateLine}</div>
+
+    <div class="cot-customer">
+      ${(custName||custLastName)?`<div class="cot-customer-name">${custName}${custLastName?' '+custLastName:''}</div>`:''}
+      ${custCompany?`<div class="cot-customer-company">${custCompany}</div>`:''}
     </div>
 
-    <div class="bol-liab">NOTE: Liability Limitation for loss or damage in this shipment may be applicable. See 49 U.S.C. - 14706(c)(1)(A) and (B).</div>
-    <div class="bol-footnote">RECEIVED, subject to the classifications and lawfully filed tariffs in effect on the date of the issue of this Bill of Lading, the property described above in apparent good order, except as noted (contents and conditions of contents of packages unknown), marked consigned and destined as indicated above which said carrier agrees to carry to its usual place of delivery at said destination, if on its route, otherwise to deliver to another carrier on the route to its destination. It is mutually agreed as to each carrier of all or any of said property, over all or any portion of said route to destination and as to each party at any time interested in all or any of said property, that every service to be performed hereunder shall be subject to the bill of lading terms and conditions in the governing classification on the date of shipment. Shipper hereby certifies that he is familiar with all the bill of lading terms and conditions in the governing classification and the said terms and conditions are hereby agreed to by the shipper and accepted for himself and his assigns.</div>
+    ${(custLastName||custName)?`<div class="cot-greeting">${greetPrefix} <strong>${title}</strong> <strong>${custLastName||custName}:</strong></div>`:''}
+
+    <div class="cot-intro">${introText}</div>
+
+    <div class="cot-tbl-hdr">
+      <div>Cantidad e Imagen</div>
+      <div>Descripción</div>
+      <div>Precio Unitario</div>
+      <div>Total</div>
+    </div>
+    ${rowsHTML}
+    <div class="cot-total-row">
+      <div class="lbl">Sub Total</div>
+      <div class="amt">$ ${fmt(subTotal)}</div>
+    </div>
+    <div class="cot-total-row iva-row">
+      <div class="lbl">IVA</div>
+      <div class="amt">$${fmt(iva)}</div>
+    </div>
+    <div class="cot-total-row grand">
+      <div class="lbl">Total</div>
+      <div class="amt">$${fmt(total)}</div>
+    </div>
+
+    ${termsText?`<div class="cot-terms">${termsText}</div>`:''}
+
+    <div class="cot-regards">A t e n t a m e n t e .</div>
+    ${sellerName?`<div class="cot-seller">${sellerName}</div>`:''}
   </div>`;
 }
 
@@ -852,299 +685,162 @@ function generatePDF(){
   const{jsPDF}=window.jspdf;
   const doc=new jsPDF({orientation:"portrait",unit:"pt",format:"letter"});
   const rows=getRows();
-  const isThu = bolMode === "thursday";
-  let tPkgs=0, tUnits=0, tKg=0;
-  rows.forEach(r=>{tPkgs+=parseInt(r.boxes||r.pkgs)||0; tUnits+=parseInt(r.units||r.pkgs)||0; tKg+=toKg(r.weight,r.unit);});
+  const ivaRate=parseFloat(v("ivaRate"))||16;
 
-  // ── Design tokens (NuvoOS palette) ─────────────────────────────────────────
-  const PW=612, ML=30, MR=30, CW=612-ML-MR;
-  const C_TEAL   = [28,74,62];      // #1C4A3E  headers / labels
-  const C_LIME   = [200,230,76];    // #C8E64C  Thursday table header accent
-  const C_BD     = [220,225,222];   // #DCDDE  border gray
-  const C_BG     = [247,248,248];   // #F7F8F8 cell background for labels
-  const C_BG2    = [242,244,242];   // slightly darker zebra / totals
-  const C_TX1    = [17,24,39];      // #111827 primary text
-  const C_TX2    = [55,65,81];      // #374151 secondary text
-  const C_TX3    = [107,114,128];   // #6B7280 muted/labels
-  const C_WHITE  = [255,255,255];
+  const C_RED   =[200,40,45];
+  const C_BD    =[220,225,222];
+  const C_BG    =[247,248,248];
+  const C_BG2   =[242,244,242];
+  const C_TX1   =[17,24,39];
+  const C_TX2   =[55,65,81];
+  const C_TX3   =[107,114,128];
+  const C_WHITE =[255,255,255];
 
-  // Helpers
-  const bd = ()=>{ doc.setDrawColor(...C_BD); doc.setLineWidth(0.5); };
-  const bdStrong = ()=>{ doc.setDrawColor(...C_TX1); doc.setLineWidth(0.75); };
-  const label = (txt,x,y2,sz=6.5)=>{
-    doc.setFont("helvetica","bold"); doc.setFontSize(sz);
-    doc.setTextColor(...C_TX3); doc.text(txt.toUpperCase(),x,y2);
+  const PW=612,ML=40,MR=40,CW=612-ML-MR;
+  const bd=()=>{doc.setDrawColor(...C_BD);doc.setLineWidth(0.5);};
+
+  let y=28;
+
+  // Logo block (top right)
+  const logoX=PW-MR-128;
+  doc.setFillColor(...C_RED);
+  doc.rect(logoX,y,78,46,"F");
+  doc.setFont("helvetica","bold");doc.setFontSize(7.5);doc.setTextColor(...C_WHITE);
+  doc.text("Algo",logoX+5,y+13);
+  doc.setFontSize(13);doc.text("PARA",logoX+5,y+25);
+  doc.setFontSize(7.5);doc.text("recordar",logoX+5,y+36);
+  doc.setFillColor(...C_RED);
+  doc.rect(logoX+80,y+2,28,42,"F");
+  doc.setFont("helvetica","bold");doc.setFontSize(10);doc.setTextColor(...C_WHITE);
+  doc.text("25",logoX+94,y+18,{align:"center"});
+  doc.setFontSize(6.5);doc.text("a\u00f1os",logoX+94,y+27,{align:"center"});
+  doc.setFont("helvetica","normal");doc.setFontSize(7);doc.setTextColor(...C_TX3);
+  doc.text("www.algopararecordar.com",PW-MR,y+54,{align:"right"});
+  doc.setFont("helvetica","bold");doc.setFontSize(7);doc.setTextColor(...C_RED);
+  doc.text("M\u00c9XICO",PW-MR,y+63,{align:"right"});
+
+  y+=76;
+
+  // Date
+  const dateVal=v("quoteDate");
+  const city=v("quoteCity")||"Ciudad de M\u00e9xico";
+  const dateStr=dateVal?fmtDateEs(dateVal):"";
+  const dateLine=dateStr?city+" a "+dateStr:city;
+  doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(...C_TX1);
+  doc.text(dateLine,PW-MR,y,{align:"right"});
+  y+=18;
+
+  // Customer
+  const custName=v("custName");
+  const custLastName=v("custLastName");
+  const custCompany=v("custCompany");
+  if(custName||custLastName){
+    doc.setFont("helvetica","bold");doc.setFontSize(10);doc.setTextColor(...C_TX1);
+    doc.text(custName+(custLastName?" "+custLastName:""),ML,y);
+    y+=13;
+  }
+  if(custCompany){
+    doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(...C_TX1);
+    doc.text(custCompany,ML,y);
+    y+=13;
+  }
+  y+=6;
+
+  // Greeting
+  const title=v("custTitle")||"se\u00f1orita";
+  const greetPrefix=(title==="se\u00f1or")?"Estimado":"Estimada";
+  const greetName=custLastName||custName||"";
+  doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(...C_TX1);
+  doc.text(greetPrefix+" "+title+" "+greetName+":",ML,y);
+  y+=16;
+
+  // Intro
+  const introText=v("introText")||"Me permito poner a su consideraci\u00f3n el presupuesto que nos hizo favor de solicitar.";
+  const introLines=doc.splitTextToSize(introText,CW);
+  doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(...C_TX1);
+  doc.text(introLines,ML,y);
+  y+=introLines.length*12+10;
+
+  // Table header
+  const cCols=[130,CW-130-110-90,110,90];
+  const cHdrs=["CANTIDAD E IMAGEN","DESCRIPCI\u00d3N","PRECIO UNITARIO","TOTAL"];
+  let cx=ML;
+  cHdrs.forEach((h,i)=>{
+    doc.setFillColor(...C_RED);doc.rect(cx,y,cCols[i],14,"FD");
+    doc.setFont("helvetica","bold");doc.setFontSize(6.5);doc.setTextColor(...C_WHITE);
+    doc.text(h,cx+cCols[i]/2,y+9,{align:"center"});
+    cx+=cCols[i];
+  });
+  y+=14;
+
+  // Rows
+  let subTotal=0;
+  rows.forEach((r,ri)=>{
+    const qty=parseFloat(r.qty)||0;
+    const price=parseFloat(r.price)||0;
+    const lineTotal=qty*price;
+    subTotal+=lineTotal;
+    const bg=ri%2===1?C_BG:C_WHITE;
+    cx=ML;
+    const rowH=14;
+    const vals=[String(r.qty||""),r.desc||"","$ "+fmt(r.price),"$"+fmt(lineTotal)];
+    vals.forEach((val2,i)=>{
+      doc.setFillColor(...bg);bd();doc.rect(cx,y,cCols[i],rowH,"FD");
+      doc.setFont("helvetica","normal");doc.setFontSize(8);doc.setTextColor(...C_TX1);
+      if(i===0) doc.text(String(val2),cx+cCols[i]/2,y+9.5,{align:"center"});
+      else if(i===2||i===3) doc.text(String(val2),cx+cCols[i]-4,y+9.5,{align:"right"});
+      else doc.text(String(val2),cx+4,y+9.5,{maxWidth:cCols[i]-8});
+      cx+=cCols[i];
+    });
+    y+=rowH;
+  });
+
+  // Totals
+  const iva=subTotal*ivaRate/100;
+  const total=subTotal+iva;
+  const lblW=cCols[0]+cCols[1]+cCols[2];
+  const valW=cCols[3];
+
+  const drawTotalRow=(lbl,amt,bg,bold,fontSize,borderTop)=>{
+    cx=ML;
+    doc.setFillColor(...bg);bd();doc.rect(cx,y,lblW+valW,13,"FD");
+    if(borderTop){doc.setDrawColor(...C_TX1);doc.setLineWidth(1);doc.line(cx,y,cx+lblW+valW,y);bd();}
+    doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(fontSize||9);doc.setTextColor(...C_TX2);
+    doc.text(lbl,cx+lblW-4,y+9,{align:"right"});
+    doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(fontSize||9);doc.setTextColor(...C_TX1);
+    doc.text(amt,cx+lblW+valW-4,y+9,{align:"right"});
+    y+=13;
   };
-  const val = (txt,x,y2,sz=8,bold=false)=>{
-    doc.setFont("helvetica", bold?"bold":"normal"); doc.setFontSize(sz);
-    doc.setTextColor(...C_TX1); doc.text(String(txt||""),x,y2);
-  };
-  const cell = (x,y2,w,h,fill=null)=>{
-    if(fill){ doc.setFillColor(...fill); doc.rect(x,y2,w,h,"FD"); }
-    else { bd(); doc.rect(x,y2,w,h,"S"); }
-  };
 
-  let y=20;
-  bdStrong();
+  drawTotalRow("Sub Total","$ "+fmt(subTotal),C_BG,false,9,false);
+  drawTotalRow("IVA","$"+fmt(iva),C_BG2,false,9,false);
+  drawTotalRow("Total","$"+fmt(total),C_BG2,true,11,true);
 
-  // ── Logo ───────────────────────────────────────────────────────────────────
-  // Logo — JPEG, natural ratio ~5.7:1 → width 108pt, height ~19pt
-  try{ doc.addImage(LOGO,"JPEG",PW-MR-112,y,108,19); }catch(e){}
+  y+=8;
+
+  // Terms
+  const termsText=v("termsText");
+  if(termsText){
+    const tlines=doc.splitTextToSize(termsText,CW);
+    doc.setFont("helvetica","normal");doc.setFontSize(7);doc.setTextColor(...C_TX2);
+    doc.text(tlines,ML,y);
+    y+=tlines.length*9+8;
+  }
+
+  // Regards
+  y+=6;
+  doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(...C_TX1);
+  doc.text("A t e n t a m e n t e .",ML,y);
   y+=28;
 
-  // ── Title bar ──────────────────────────────────────────────────────────────
-  doc.setFillColor(...C_TX1);
-  doc.rect(ML,y,CW,20,"F");
-  doc.setFont("helvetica","bold"); doc.setFontSize(11);
-  doc.setTextColor(...C_WHITE);
-  doc.text("STRAIGHT BILL OF LADING", ML+CW/2, y+13.5, {align:"center"});
-  y+=22;
-
-  const LW=CW*0.55, RW=CW*0.45;
-
-  // ── Row helper: draws a bordered cell with a small label above a value ─────
-  const infoCell=(x,y2,w,h,lbl,val2,valSz=8,valBold=false)=>{
-    bd(); doc.rect(x,y2,w,h,"S");
-    label(lbl, x+4, y2+7);
-    doc.setFont("helvetica",valBold?"bold":"normal"); doc.setFontSize(valSz);
-    doc.setTextColor(...C_TX1); doc.text(String(val2||""), x+4, y2+h-4);
-  };
-
-  // ── Ship From | Date | Shipment ID ─────────────────────────────────────────
-  const rh1=28;
-  infoCell(ML,      y, LW,    rh1, "Ship From", v("shipperName"), 8.5, true);
-  infoCell(ML+LW,   y, RW*0.5,rh1, "Date",      fmtDate(v("shipDate")), 8);
-  infoCell(ML+LW+RW*0.5, y, RW*0.5, rh1, "Shipment ID", v("shipmentId"), 9, true);
-  y+=rh1;
-
-  // ── Shipper addr | Carrier | Trailer ───────────────────────────────────────
-  const rh2=22;
-  bd(); doc.rect(ML,y,LW,rh2,"S");
-  doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(...C_TX2);
-  const addrL=doc.splitTextToSize(v("shipperAddr"),LW-8);
-  doc.text(addrL.slice(0,2), ML+4, y+8);
-
-  infoCell(ML+LW,        y, RW*0.5, rh2, "Carrier Name", v("carrierName"), 8);
-  infoCell(ML+LW+RW*0.5, y, RW*0.5, rh2, "Trailer No",   v("trailerNo"),   8);
-  y+=rh2;
-
-  // ── SCAC | Seal | (empty) ──────────────────────────────────────────────────
-  const rh3=18;
-  bd(); doc.rect(ML,y,LW,rh3,"S"); // empty left (continuation of address area)
-  infoCell(ML+LW,        y, RW*0.5, rh3, "SCAC",        v("scacCode"), 8);
-  infoCell(ML+LW+RW*0.5, y, RW*0.5, rh3, "Seal Number", v("sealNo"),   8);
-  y+=rh3;
-
-  // ── Ship To | Delivery Date | Delivery Time ────────────────────────────────
-  const rh4=28;
-  infoCell(ML,           y, LW,     rh4, "Ship To",       v("consigneeName"), 8.5, true);
-  infoCell(ML+LW,        y, RW*0.5, rh4, "Delivery Date", fmtDs(v("deliveryDate")), 8);
-  infoCell(ML+LW+RW*0.5, y, RW*0.5, rh4, "Delivery Time", v("deliveryTime"), 8);
-  y+=rh4;
-
-  // ── Consignee address row ──────────────────────────────────────────────────
-  const rh5=18;
-  bd(); doc.rect(ML,y,LW,rh5,"S");
-  doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(...C_TX3);
-  const caddrL=doc.splitTextToSize(v("consigneeAddr"),LW-8);
-  doc.text(caddrL.slice(0,2), ML+4, y+7);
-  bd(); doc.rect(ML+LW,y,RW,rh5,"S");
-  y+=rh5+3;
-
-  // ── Third Party block (Tresmontes only) ────────────────────────────────────
-  const tpName=v("tpName"),tpAddr=v("tpAddr"),tpCity=v("tpCity");
-  if(tpName||tpAddr){
-    const tpHasCity = tpCity && tpCity !== tpAddr;
-    const tpH = tpHasCity ? 42 : 32;
-    bd(); doc.rect(ML,y,CW,tpH,"S");
-    doc.setFont("helvetica","bold"); doc.setFontSize(7.5); doc.setTextColor(...C_TX3);
-    doc.text("THIRD PARTY FREIGHT CHARGES BILL TO", ML+4, y+8);
-    doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-    if(tpName) doc.text("Name: "+tpName, ML+4, y+18);
-    if(tpAddr) doc.text("Address: "+tpAddr, ML+4, y+27);
-    if(tpHasCity) doc.text("City: "+tpCity, ML+4, y+36);
-    y+=tpH+4;
+  // Seller
+  const sellerName=v("sellerName");
+  if(sellerName){
+    doc.setFont("helvetica","bold");doc.setFontSize(10);doc.setTextColor(...C_TX1);
+    doc.text(sellerName,ML,y);
   }
 
-  // ── Confirmation number (Thursday) ─────────────────────────────────────────
-  const confNum=v("confirmNum");
-  if(confNum){
-    doc.setFont("helvetica","bold"); doc.setFontSize(9.5); doc.setTextColor(...C_TX1);
-    doc.text("Confirmation number: "+confNum, ML+CW/2, y+11, {align:"center"});
-    y+=17;
-  }
-
-  // ── Cargo table ─────────────────────────────────────────────────────────────
-  if(isThu){
-    // Thursday — teal header (same as standard)
-    const cCols=[CW*0.22,CW*0.18,CW*0.14,CW*0.10,CW*0.36];
-    const cHdrs=["Customer Order No.","Consignee","Pallets","Boxes","Description"];
-    let cx=ML;
-    cHdrs.forEach((h,i)=>{
-      doc.setFillColor(...C_TEAL);
-      doc.rect(cx,y,cCols[i],13,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor(...C_WHITE);
-      doc.text(h, cx+cCols[i]/2, y+8.5, {align:"center"});
-      cx+=cCols[i];
-    }); y+=13;
-
-    rows.forEach((r,ri)=>{
-      const descUp=(r.desc||"").toUpperCase();
-      const palletsVal=(descUp==="BOOTS"||descUp==="BOOT"||descUp==="FOOTWEAR")
-        ? String(r.units||r.pkgs||"")
-        : (r.units||r.pkgs||"")+(r.desc?" "+r.desc.toUpperCase():"");
-      const vals=[r.order, r.consignee, palletsVal, r.boxes||r.pkgs, r.desc];
-      cx=ML;
-      const bg = ri%2===1 ? C_BG : C_WHITE;
-      vals.forEach((val2,i)=>{
-        doc.setFillColor(...bg); bd(); doc.rect(cx,y,cCols[i],12,"FD");
-        doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-        doc.text(String(val2||""), cx+3, y+8.5, {maxWidth:cCols[i]-5});
-        cx+=cCols[i];
-      }); y+=12;
-    });
-
-    // Total row
-    cx=ML;
-    ["","Total:",fmt(tUnits,0),fmt(tPkgs,0),""].forEach((val2,i)=>{
-      doc.setFillColor(...C_BG2); bd(); doc.rect(cx,y,cCols[i],12,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-      doc.text(String(val2||""), cx+cCols[i]/2, y+8.5, {align:"center"});
-      cx+=cCols[i];
-    }); y+=12;
-
-    const pallets=v("totalPallets");
-    if(pallets){
-      cx=ML;
-      ["","Pallets:","",pallets,""].forEach((val2,i)=>{
-        doc.setFillColor(...C_BG2); bd(); doc.rect(cx,y,cCols[i],11,"FD");
-        doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-        doc.text(String(val2||""), cx+cCols[i]/2, y+7.5, {align:"center"});
-        cx+=cCols[i];
-      }); y+=11;
-    }
-    y+=5;
-
-  } else {
-    // Standard / Tresmontes — dark teal header
-    const cCols=[CW*0.32,CW*0.13,CW*0.18,CW*0.37];
-    const cHdrs=["Customer Order No.","Pkgs","Weight KG","Description"];
-    let cx=ML;
-    cHdrs.forEach((h,i)=>{
-      doc.setFillColor(...C_TEAL); bd(); doc.rect(cx,y,cCols[i],13,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(7.5); doc.setTextColor(...C_WHITE);
-      doc.text(h, cx+cCols[i]/2, y+9, {align:"center"});
-      cx+=cCols[i];
-    }); y+=13;
-
-    rows.forEach((r,ri)=>{
-      const vals=[r.order, r.boxes||r.pkgs, fmt(toKg(r.weight,r.unit)), r.desc];
-      cx=ML;
-      const bg=ri%2===1?C_BG:C_WHITE;
-      vals.forEach((val2,i)=>{
-        doc.setFillColor(...bg); bd(); doc.rect(cx,y,cCols[i],12,"FD");
-        doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-        doc.text(String(val2||""), cx+3, y+8.5, {maxWidth:cCols[i]-5});
-        cx+=cCols[i];
-      }); y+=12;
-    });
-
-    cx=ML;
-    [fmt(tPkgs,0),"",fmt(tKg),""].forEach((val2,i)=>{
-      doc.setFillColor(...C_BG2); bd(); doc.rect(cx,y,cCols[i],12,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-      doc.text(val2, cx+3, y+8.5);
-      cx+=cCols[i];
-    }); y+=16;
-
-    // Carrier info section
-    doc.setFillColor(...C_BG); bd();
-    doc.rect(ML,y,CW,13,"FD");
-    doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...C_TX2);
-    doc.text("Carrier Information", ML+CW/2, y+9, {align:"center"});
-    y+=13;
-
-    const ciC=[55,55,80,40,CW-280,55];
-    const ciH=["QTY","TYPE","Weight KG","H.M","Commodity","Class"];
-    cx=ML;
-    ciH.forEach((h,i)=>{
-      doc.setFillColor(...C_BG); bd(); doc.rect(cx,y,ciC[i],12,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor(...C_TX3);
-      doc.text(h, cx+ciC[i]/2, y+8.5, {align:"center"});
-      cx+=ciC[i];
-    }); y+=12;
-
-    const pdfCommodity=v("commodity")||"Boxes";
-    const pdfFreightCls=v("freightClass")||"60";
-    rows.forEach((r,ri)=>{
-      const vals=[r.boxes||r.pkgs,r.type,fmt(toKg(r.weight,r.unit)),"",pdfCommodity,pdfFreightCls];
-      cx=ML;
-      const bg=ri%2===1?C_BG:C_WHITE;
-      vals.forEach((val2,i)=>{
-        doc.setFillColor(...bg); bd(); doc.rect(cx,y,ciC[i],12,"FD");
-        doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-        if(i===4) doc.text(String(val2),cx+4,y+8.5,{align:"left",maxWidth:ciC[i]-6});
-        else doc.text(String(val2),cx+ciC[i]/2,y+8.5,{align:"center"});
-        cx+=ciC[i];
-      }); y+=12;
-    });
-    cx=ML;
-    [fmt(tPkgs,0),"",fmt(tKg),"","",""].forEach((val2,i)=>{
-      doc.setFillColor(...C_BG2); bd(); doc.rect(cx,y,ciC[i],12,"FD");
-      doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...C_TX1);
-      doc.text(val2, cx+ciC[i]/2, y+8.5, {align:"center"});
-      cx+=ciC[i];
-    }); y+=16;
-  }
-
-  // ── Special Instructions ───────────────────────────────────────────────────
-  const instrLabel = isThu ? "Shipper Special Instructions" : "Consignee Special Instructions";
-  bd(); doc.rect(ML,y,CW,46,"S");
-  label(instrLabel, ML+4, y+8, 6.5);
-  doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...C_TX2);
-  const silines=doc.splitTextToSize(v("specInstr"),CW-8);
-  doc.text(silines.slice(0,3), ML+4, y+18);
-  y+=50;
-
-  // ── Signature block ────────────────────────────────────────────────────────
-  const sigH=66;
-  bd(); doc.rect(ML,y,CW/2,sigH,"S"); bd(); doc.rect(ML+CW/2,y,CW/2,sigH,"S");
-
-  // Left: note + carrier sig
-  doc.setFont("helvetica","normal"); doc.setFontSize(6.2); doc.setTextColor(...C_TX3);
-  const noteT="NOTE - Where the rate is dependant on value, shippers are required to state specifically in writing the agreed or declared value of the property.\n\nThe agreed or declared value of the property is hereby specifically stated by the shipper to be not exceeding\n$ "+(v("declValue")||"");
-  doc.text(doc.splitTextToSize(noteT,CW/2-10), ML+4, y+8);
-  doc.setFont("helvetica","bold"); doc.setFontSize(7.5); doc.setTextColor(...C_TX1);
-  doc.text("CARRIER SIGNATURE / PICKUP DATE", ML+4, y+sigH-14);
-  doc.setDrawColor(...C_BD); doc.setLineWidth(0.75);
-  doc.line(ML+4,y+sigH-6,ML+CW/2-4,y+sigH-6);
-  doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(...C_TX3);
-  doc.text("Date:", ML+4, y+sigH-1);
-
-  // Right: consignee sig
-  doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...C_TX1);
-  doc.text("CONSIGNEE SIGNATURE", ML+CW/2+4, y+12);
-  doc.setFont("helvetica","italic"); doc.setFontSize(7.5); doc.setTextColor(...C_TX3);
-  doc.text("Property described above is received in good order, except noted.", ML+CW/2+4, y+21);
-  doc.setDrawColor(...C_BD); doc.line(ML+CW/2+4,y+sigH-6,ML+CW-4,y+sigH-6);
-  doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(...C_TX3);
-  doc.text("Date:", ML+CW/2+4, y+sigH-1);
-  y+=sigH;
-
-  // ── Liability note ─────────────────────────────────────────────────────────
-  doc.setFillColor(...C_BG); bd(); doc.rect(ML,y,CW,13,"FD");
-  doc.setFont("helvetica","bold"); doc.setFontSize(6.5); doc.setTextColor(...C_TX2);
-  doc.text("NOTE: Liability Limitation for loss or damage in this shipment may be applicable. See 49 U.S.C. - 14706(c)(1)(A) and (B).",ML+CW/2,y+9,{align:"center"});
-  y+=13;
-
-  // ── Footnote ───────────────────────────────────────────────────────────────
-  const ftlines=doc.splitTextToSize("RECEIVED, subject to the classifications and lawfully filed tariffs in effect on the date of the issue of this Bill of Lading, the property described above in apparent good order, except as noted (contents and conditions of contents of packages unknown), marked consigned and destined as indicated above which said carrier agrees to carry to its usual place of delivery at said destination, if on its route, otherwise to deliver to another carrier on the route to its destination. It is mutually agreed as to each carrier of all or any of said property, over all or any portion of said route to destination and as to each party at any time interested in all or any of said property, that every service to be performed hereunder shall be subject to the bill of lading terms and conditions in the governing classification on the date of shipment. Shipper hereby certifies that he is familiar with all the bill of lading terms and conditions in the governing classification and the said terms and conditions are hereby agreed to by the shipper and accepted for himself and his assigns.", CW-8);
-  const ftH=Math.max(26, ftlines.length*6+8);
-  bd(); doc.rect(ML,y,CW,ftH,"S");
-  doc.setFont("helvetica","normal"); doc.setFontSize(5.5); doc.setTextColor(...C_TX3);
-  doc.text(ftlines, ML+4, y+7);
-
-  doc.save("Nuvocargo-BOL-"+(v("shipmentId")||"BOL")+".pdf");
+  doc.save("Cotizacion-"+(v("quoteNum")||new Date().toISOString().split("T")[0])+".pdf");
 }
 
 // ========= UPLOAD =========
@@ -1192,12 +888,11 @@ async function doUploadMulti(files){
     fillFormMulti(merged, results);
 
     const totalCargo=merged.cargoRows?.length||0;
-    const modeLabel = bolMode === "thursday" ? "Thursday Boot" : "Standard/Tresmontes";
     const imagePDFs = results.filter(r=>r._imagePDF).length;
     const templates = [...new Set(results.map(r=>r._source||r._template).filter(Boolean))].join(", ");
-    let statusMsg = `✅ ${modeLabel} mode — ${fileArr.length} file(s) → ${totalCargo} cargo line(s) auto-filled`;
-    if(templates) statusMsg += ` | Detected: ${templates}`;
-    if(imagePDFs) statusMsg += ` | ⚠️ ${imagePDFs} scanned PDF(s) require manual entry`;
+    let statusMsg = `✅ ${fileArr.length} archivo(s) → ${totalCargo} artículo(s) importado(s)`;
+    if(templates) statusMsg += ` | Tipo: ${templates}`;
+    if(imagePDFs) statusMsg += ` | ⚠️ ${imagePDFs} PDF(s) escaneado(s), entrada manual requerida`;
     st.className="upstatus ok";
     st.textContent=statusMsg;
     if(totalCargo>0){
@@ -1257,37 +952,14 @@ function consolidateResults(results, files){
 }
 
 function fillFormMulti(merged, allResults){
-  const set=(id,val)=>{
-    const el=document.getElementById(id);
-    if(el&&val&&String(val).trim()){el.value=String(val).trim();el.classList.add("autofill");}
-  };
-  set("shipperName", merged.shipperName);
-  set("consigneeName", merged.consigneeName);
-  set("consigneeAddr", merged.consigneeAddr);
-  set("carrierName", merged.carrierName);
-  if(merged.shipDate) set("shipDate", merged.shipDate);
-
-  // Tresmontes rule: always use the correct warehouse address + Third Party billing
-  if(merged.shipperName && /tresmontes/i.test(merged.shipperName)){
-    set("shipperAddr", "Av. Guadalajara 105, km11+034.11. Parque Industrial Centro Logistico Jalisco.");
-    set("tpName",  "Tresmontes Lucchetti Mexico SA de CV");
-    set("tpAddr",  "Blvd Manuel Avila Camacho No. 88 Piso 4");
-    set("tpCity",  "Blvd Manuel Avila Camacho No. 88 Piso 4");
-  } else {
-    set("shipperAddr", merged.shipperAddr);
-  }
-
-  // Set commodity from first result that has cargo items
-  const firstWithCargo = allResults.find(r=>r.cargoRows?.length);
-  if(firstWithCargo?.cargoRows?.[0]?.desc){
-    const descEl=document.getElementById("commodity");
-    if(descEl&&!descEl.value) descEl.value=firstWithCargo.cargoRows[0].desc;
-  }
-
-  // Set cargo rows — one row per packing list (summary format)
-  document.getElementById("cargoBody").innerHTML="";rc=0;
-  if(merged.cargoRows.length){
-    merged.cargoRows.forEach(r=>addRow(r));
+  // Populate item rows from parsed cargo data
+  document.getElementById("itemBody").innerHTML="";rc=0;
+  if(merged.cargoRows&&merged.cargoRows.length){
+    merged.cargoRows.forEach(r=>addRow({
+      qty: r.units||r.pkgs||r.boxes||"",
+      desc: r.desc||r.order||"",
+      price: ""
+    }));
   } else {
     addRow();addRow();
   }
@@ -1849,12 +1521,10 @@ function consolidateResults(results, files){
   // Detect Thursday mode: any TBC template → Thursday mode
   const hasTBC = results.some(r=>r._template==="tbc");
   if(hasTBC){
-    const thuR = document.querySelector('input[name="bolMode"][value="thursday"]');
-    if(thuR){ thuR.checked=true; setBolMode("thursday"); }
+    // BOL mode detection removed - cotización mode only
   } else {
     // Only switch to tresmontes if NO tbc files (don't override if mixed)
-    const treR = document.querySelector('input[name="bolMode"][value="tresmontes"]');
-    if(treR){ treR.checked=true; setBolMode("tresmontes"); }
+    // BOL mode detection removed - cotización mode only
   }
 
   results.forEach((r, idx) => {
@@ -1929,7 +1599,7 @@ function fillFormMulti(merged, allResults){
   }
 
   // Thursday: consignee is destination warehouse — clean up
-  if(bolMode==="thursday" && merged.consigneeName){
+  if(merged.consigneeName){
     set("consigneeName", merged.consigneeName.split("/")[0].trim());
   }
 
@@ -1982,14 +1652,14 @@ function fillForm(ex){
 }
 
 function clearForm(){
-  if(!confirm("Clear all fields?")) return;
-  document.querySelectorAll("#cargoBody tr").forEach(r=>r.remove());
+  if(!confirm("\u00bfLimpiar todos los campos?")) return;
+  document.querySelectorAll("#itemBody tr").forEach(r=>r.remove());
   rc=0;
   document.querySelectorAll("input[type=text],textarea").forEach(e=>{e.value="";e.classList.remove("autofill");});
   const t=new Date();
-  document.getElementById("shipDate").value=t.toISOString().split("T")[0];
-  document.getElementById("shipmentId").value="SH-"+(Math.floor(Math.random()*90000)+10000);
-  document.getElementById("deliveryDate").value="";
+  document.getElementById("quoteDate").value=t.toISOString().split("T")[0];
+  document.getElementById("quoteNum").value="COT-"+(Math.floor(Math.random()*9000)+1000);
+  document.getElementById("ivaRate").value="16";
   document.getElementById("upstatus").className="upstatus";
   document.getElementById("chips").className="chips";
   document.getElementById("docfile").value="";
@@ -2107,19 +1777,9 @@ function toggleTheme(){
 
 // ── Translations ──────────────────────────────────────────────────────────────
 const TRANS={
-  en:{
-    'btn.clearForm':'Clear form','btn.downloadPDF':'Download PDF',
-    'bol.import':'Import packing list','bol.shipmentInfo':'Shipment Info',
-    'bol.shipFrom':'Ship From (Shipper)','bol.shipTo':'Ship To (Consignee)',
-    'bol.thirdParty':'Third Party Freight Bill To','bol.cargo':'Cargo Lines',
-    'htitle':'BOL Generator',
-  },
   es:{
-    'btn.clearForm':'Limpiar formulario','btn.downloadPDF':'Descargar PDF',
-    'bol.import':'Importar lista de empaque','bol.shipmentInfo':'Datos del Embarque',
-    'bol.shipFrom':'Origen (Embarcador)','bol.shipTo':'Destino (Consignatario)',
-    'bol.thirdParty':'Flete a Cargo de Tercero','bol.cargo':'Líneas de Carga',
-    'htitle':'Generador de BOL',
+    'btn.clearForm':'Limpiar','btn.downloadPDF':'Descargar PDF',
+    'htitle':'Generador de Cotizaciones',
   }
 };
 let _lang=localStorage.getItem('nuvo_lang')||'en';
